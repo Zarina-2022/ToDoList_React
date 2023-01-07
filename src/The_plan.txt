@@ -1,0 +1,9 @@
+To Do List Plan (yol haritasi)
+
+Uygulamanin ozellikleri:
+
+1. Kullanici bir form araciyla to do ekleyecek.
+2. Ekledigi to do direkt ekranda gorunecek.
+3. Her to do icin sil, guncelle ve durumuna gore yapildi/yapilmadi butonu olacak.
+4. Bu butonlar ilgili gorevlerini yerine getirecek.
+5. Eger yapilacaklar listesi bos ise ekranda "Henuz yapilacak is yok" yazilsin.
