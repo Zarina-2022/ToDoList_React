@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useState } from "react"
 
 const TodoList = ({ item, yapilacaklar, setYapilacaklar }) => {
-  // Button Delete
+
+  // DELETE BUTTON
   const deleteBtn = () => {
     const temp = yapilacaklar.filter((x) => x.id !== item.id)       // temp=temporary=gecici
     setYapilacaklar(temp)
@@ -29,15 +30,16 @@ const TodoList = ({ item, yapilacaklar, setYapilacaklar }) => {
      setYapilacaklar(temp)
     */
   }
-  // done or not done button
-  const doneNotDoneBtn = ()=>{
+
+  // DONE OR NOT DONE BUTTON
+  const doneNotDoneBtn = () => {
     var temp = []
-    for(var a=0; a<yapilacaklar.length; a++){
-      if(yapilacaklar[a].id === item.id){
-        var newDoneNotDoneList={
+    for (var a = 0; a < yapilacaklar.length; a++) {
+      if (yapilacaklar[a].id === item.id) {
+        var newDoneNotDoneList = {
           // spread ile newDoneNotDoneList object'i daha kisa write:
-           ...item,
-            haveDone: !item.haveDone // burda yeni item da ekleyebiliriz, veya var olani change.
+          ...item,
+          haveDone: !item.haveDone // burda yeni item da ekleyebiliriz, veya var olani change.
           /* burda daha genis write:
           id:item.id,
           text:item.text,
@@ -46,26 +48,79 @@ const TodoList = ({ item, yapilacaklar, setYapilacaklar }) => {
           */
         }
         temp.push(newDoneNotDoneList)
-      } else{
+      } else {
         temp.push(yapilacaklar[a])
       }
     }
     setYapilacaklar(temp)
   }
 
+  // UPDATE BUTTON
+  // CRUD yapisi = Create Read Update Delete ile write
+  const [updateButton, setUpdateButton] = useState(false)
+  const [updateInputText, setUpdateInputText] = useState(item.text) // baslangic degeri inputtaki var olan value
+  const confirmBtn = () => {
+    /* Validation - dogrulama*/
+    if (confirmBtn === "") {
+      alert("The to-do field cannot be left blank")
+      return
+    }
+    var temp = []
+    for (var i = 0; i < yapilacaklar.length; i++) {
+      if (yapilacaklar[i].id === item.id) {
+        var confirmBtn = {
+          ...item,
+          text: updateInputText
+        }
+        temp.push(confirmBtn)
+      } else {
+        temp.push(yapilacaklar[i])
+      }
+    }
+    setYapilacaklar(temp)
+    setUpdateButton(false)
+  }
 
   return (
     <div className="alert alert-secondary d-flex justify-content-between">
-
       <div>
-        <h2 style={{textDecoration: item.haveDone === true ? "line-through" : "none"}}>{item.text}</h2>
+        {
+          updateButton === true ? (
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Write here ..."
+                value={updateInputText}
+                onChange={(event) => setUpdateInputText(event.target.value)}
+              />
+              <button
+                onClick={() => {
+                  setUpdateButton(false)
+                  setUpdateInputText(item.text) // update btn'e tiklandiginda eski value sav olmuyor 
+                }}
+                className="btn btn-danger">
+                Cancel
+              </button>
+
+              <button
+                onClick={confirmBtn}
+                className="btn btn-primary">
+                Confirm
+              </button>
+
+            </div>
+          ) : (
+            <h2 style={{ textDecoration: item.haveDone === true ? "line-through" : "none" }}>{item.text}</h2>
+          )
+        }
         <p>Date: {new Date(item.date).toLocaleString().replaceAll("/", ".")}</p>
       </div>
 
       <div className="d-flex align-items-center">
         <div class="btn-group" role="group" aria-label="Basic example">
           <button onClick={doneNotDoneBtn} type="button" class="btn btn-sm btn-success">{item.haveDone === true ? "Not Done" : "Done"}</button>
-          <button type="button" class="btn btn-sm btn-warning">Update</button>
+          <button onClick={() => setUpdateButton(true)} type="button" class="btn btn-sm btn-warning">Update</button>
           <button onClick={deleteBtn} type="button" class="btn btn-sm btn-danger">Delete</button>
         </div>
       </div>
@@ -73,7 +128,5 @@ const TodoList = ({ item, yapilacaklar, setYapilacaklar }) => {
     </div>
   )
 }
-
-
 
 export default TodoList

@@ -29,7 +29,7 @@ const Form = ({yapilacaklar,setYapilacaklar}) => {
                         // autoCorrect={false} - otom. duzeltmeyi kapatir
                         // autoComplete={false} - otom. tamamlamaz
                         className="form-control"
-                        placeholder="Write here what you want to do..."
+                        placeholder="Write here what do you want to do..."
                         value={enteredText}
                         onChange={(event) => setEnteredText(event.target.value)}
                     />
