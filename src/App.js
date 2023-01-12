@@ -7,6 +7,12 @@ function App() {
   const [yapilacaklar, setYapilacaklar] = useState([])
 
   // map ile yazildi ilk harfin Buyuk olmasi icin:
+  /*
+const upperFirstLetter = (text) => {
+        return (text.charAt(0).toUpperCase() + text.slice(1));
+    }
+
+  */
   /*  function capitalize(word) {
       return word
         .split('')
@@ -37,7 +43,8 @@ function App() {
           <div className="container my-5">
             {
               yapilacaklar.map((item, index) => (
-                <TodoList key={item.id} item={item} />
+                <TodoList key={item.id} item={item} 
+                yapilacaklar={yapilacaklar} setYapilacaklar={setYapilacaklar}/>
               ))
             }
           </div>
