@@ -31,27 +31,27 @@ const upperFirstLetter = (text) => {
 */
   return (
     <div className="container">
-      <h1 className="my-5  text-center"> To Do App</h1>
-      <Form yapilacaklar={yapilacaklar} setYapilacaklar={setYapilacaklar} />
-      {
-        yapilacaklar.length === 0 ? (
-          <div className="d-flex flex-column align-items-center">
-            <img src={todo} />
-            <h2 className="text-center my-5">You have nothing to do yet</h2>
-          </div>
-        ) : (
-          <div className="container my-5">
-            {
-              yapilacaklar.map((item, index) => (
-                <TodoList key={item.id} item={item} 
-                yapilacaklar={yapilacaklar} setYapilacaklar={setYapilacaklar}/>
-              ))
-            }
-          </div>
-        )
-      }
-    </div>
-  );
+        <h1 className="my-5  text-center"> To Do App</h1>
+        <Form yapilacaklar={yapilacaklar} setYapilacaklar={setYapilacaklar} />
+        {
+          yapilacaklar.length === 0 ? (
+            <div className="d-flex flex-column align-items-center">
+              <img src={todo} />
+              <h2 className="text-center my-5">You have nothing to do yet</h2>
+            </div>
+          ) : (
+            <div className="container my-5">
+              {
+                yapilacaklar.map((item, index) => (
+                  <TodoList key={item.id} item={item}
+                    yapilacaklar={yapilacaklar} setYapilacaklar={setYapilacaklar} />
+                ))
+              }
+            </div>
+          )
+        }
+      </div>
+  )
 }
 
 export default App;

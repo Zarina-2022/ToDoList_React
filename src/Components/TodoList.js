@@ -65,7 +65,7 @@ const TodoList = ({ item, yapilacaklar, setYapilacaklar }) => {
       alert("The to-do field cannot be left blank")
       return
     }
-    if (confirmBtn === item.text){
+    if (confirmBtn === item.text) {
       setUpdateButton(false)
       return
     }
@@ -77,12 +77,12 @@ const TodoList = ({ item, yapilacaklar, setYapilacaklar }) => {
         inputValue = true
       }
     })
-    if (inputValue = true) {
-      if(window.confirm("Such to-do already exist. Still add?") === false){
-          return
+    if (inputValue === true) {
+      if (window.confirm("Such to-do already exist. Still add?") === false) {
+        return
       }
     }
-    
+
     // yeni input value girilmesi icin:
     var temp = []
     for (var i = 0; i < yapilacaklar.length; i++) {

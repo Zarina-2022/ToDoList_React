@@ -19,7 +19,7 @@ const Form = ({ yapilacaklar, setYapilacaklar }) => {
                 newValue = true
             }
         })
-        if (newValue = true) {
+        if (newValue === true) {
             if (window.confirm("Such to-do already exist. Still add?") === false) {
                 return
             }
