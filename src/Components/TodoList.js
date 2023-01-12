@@ -65,12 +65,32 @@ const TodoList = ({ item, yapilacaklar, setYapilacaklar }) => {
       alert("The to-do field cannot be left blank")
       return
     }
+    if (confirmBtn === item.text){
+      setUpdateButton(false)
+      return
+    }
+    // Ayni inputun girilmesini engellemek icin:
+    const nonRepeatInput = yapilacaklar.filter(x => x.id !== item.id)
+    var inputValue = false
+    nonRepeatInput.map(y => {
+      if (y.text.toLowerCase() === updateInputText.toLowerCase()) { // lowercase ile girilen kelimenin buyuk harfle mi, kucuk harfle mi yazildi fark etmez: ayni kelime olarak algilar
+        inputValue = true
+      }
+    })
+    if (inputValue = true) {
+      if(window.confirm("Such to-do already exist. Still add?") === false){
+          return
+      }
+    }
+    
+    // yeni input value girilmesi icin:
     var temp = []
     for (var i = 0; i < yapilacaklar.length; i++) {
       if (yapilacaklar[i].id === item.id) {
         var confirmBtn = {
           ...item,
-          text: updateInputText
+          text: updateInputText.charAt(0).toUpperCase() + updateInputText.slice(1),
+          date: new Date()
         }
         temp.push(confirmBtn)
       } else {

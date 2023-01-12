@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 // props'u iki sekilde karsilayabiliriz baska sayfada: biri (props), digeri ({isim,setIsim})
 // const Form = ({yapilacaklar,setYapilacaklar}) veya const Form = (props):
-const Form = ({yapilacaklar,setYapilacaklar}) => {
-    
+const Form = ({ yapilacaklar, setYapilacaklar }) => {
+
     const [enteredText, setEnteredText] = useState("")
     const checkForm = (event) => {
         event.preventDefault()
@@ -12,9 +12,22 @@ const Form = ({yapilacaklar,setYapilacaklar}) => {
             alert("Type the to-do to add")
             return
         }
+
+        var newValue = false
+        yapilacaklar.map(item => {
+            if (item.text.toLocaleLowerCase() === enteredText.toLocaleLowerCase()) {
+                newValue = true
+            }
+        })
+        if (newValue = true) {
+            if (window.confirm("Such to-do already exist. Still add?") === false) {
+                return
+            }
+        }
+
         const newToDo = {
             id: String(new Date().getTime()),
-            text: enteredText.charAt(0).toUpperCase() + enteredText.slice(1), // en kisa Capitalise yontemi 
+            text: enteredText.charAt(0).toUpperCase() + enteredText.slice(1), // (en kisa Capitalise yontemi) 
             date: new Date(),
             haveDone: false
         }
