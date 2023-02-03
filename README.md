@@ -1,10 +1,15 @@
-# Getting Started with Create React App
+<h1>TODOLIST-REACT</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h3>This site was made by using React.js and <a href="https://www.bootstrapcdn.com/"><b>Bootstrap </b> </a>.</h3>
+
+<h3>Additionally I used <a href="https://icons8.com/"><b>icon8.com</b> </a> (for icons) </h3>
 
 <h2>Preview of the project:</h2>
 
 ![](todoReact.gif)
+
+Enjoy Coding ❤
+
 
 ## Available Scripts
 
